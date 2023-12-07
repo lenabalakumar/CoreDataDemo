@@ -14,10 +14,13 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         
-        for _ in 0..<2 {
+        for _ in 0..<5 {
             let newItem = Item(context: viewContext)
+            let newPerson = Person(context: viewContext)
             newItem.timestamp = Date()
+            newPerson.name = "Habrabar"
         }
+        
         do {
             try viewContext.save()
         } catch {
@@ -26,16 +29,61 @@ struct PersistenceController {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
+        
         return result
     }()
 
     let container: NSPersistentContainer
+    
+    func fetchAllgoals() -> [Goal] {
+        let req = NSFetchRequest<Goal>(entityName: "Goal")
+        
+        do {
+            return try container.viewContext.fetch(req)
+        } catch {
+            return []
+        }
+    }
+    
+    func fetchNumberOfGoals() -> Int {
+        var count = 0
+        let req = NSFetchRequest<Goal>(entityName: "Goal")
+        
+        req.resultType = .countResultType
+        
+        do {
+            let countResult = try container.viewContext.fetch(req)
+            count = countResult.count
+        } catch {
+            print("Error while fetching number of goals due to \(error)")
+        }
+        return count
+    }
+    
+    func addGoal(emoji: String, title: String, desc: String) -> Void {
+        let newGoal = Goal(context: container.viewContext)
+        
+        newGoal.goalId = UUID()
+        newGoal.emoji = emoji
+        newGoal.title = title
+        newGoal.desc = desc
+        newGoal.progress = 0
+        newGoal.isAchieved = false
+        newGoal.timestamp = Date()
+        
+        do {
+            try container.viewContext.save()
+        } catch {
+            print("Unable to create a goal due to \(error.localizedDescription)")
+        }
+    }
 
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "CoreDataDemo")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.

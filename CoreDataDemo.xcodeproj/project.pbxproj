@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C5BB2132B222EB10007F88C /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5BB20F2B222EB10007F88C /* Goal+CoreDataClass.swift */; };
+		0C5BB2142B222EB10007F88C /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5BB2102B222EB10007F88C /* Goal+CoreDataProperties.swift */; };
+		0C5BB2152B222EB10007F88C /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5BB2112B222EB10007F88C /* Task+CoreDataClass.swift */; };
+		0C5BB2162B222EB10007F88C /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5BB2122B222EB10007F88C /* Task+CoreDataProperties.swift */; };
+		0C5BB2182B2231760007F88C /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5BB2172B2231760007F88C /* ViewModel.swift */; };
 		0C8F5E9D2B0D12BA0057C6CF /* CoreDataDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8F5E9C2B0D12BA0057C6CF /* CoreDataDemoApp.swift */; };
 		0C8F5E9F2B0D12BA0057C6CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8F5E9E2B0D12BA0057C6CF /* ContentView.swift */; };
 		0C8F5EA12B0D12BC0057C6CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C8F5EA02B0D12BC0057C6CF /* Assets.xcassets */; };
@@ -16,6 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C5BB20F2B222EB10007F88C /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0C5BB2102B222EB10007F88C /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0C5BB2112B222EB10007F88C /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0C5BB2122B222EB10007F88C /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0C5BB2172B2231760007F88C /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		0C8F5E992B0D12BA0057C6CF /* CoreDataDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C8F5E9C2B0D12BA0057C6CF /* CoreDataDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDemoApp.swift; sourceTree = "<group>"; };
 		0C8F5E9E2B0D12BA0057C6CF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,10 +65,15 @@
 		0C8F5E9B2B0D12BA0057C6CF /* CoreDataDemo */ = {
 			isa = PBXGroup;
 			children = (
+				0C5BB20F2B222EB10007F88C /* Goal+CoreDataClass.swift */,
+				0C5BB2102B222EB10007F88C /* Goal+CoreDataProperties.swift */,
+				0C5BB2112B222EB10007F88C /* Task+CoreDataClass.swift */,
+				0C5BB2122B222EB10007F88C /* Task+CoreDataProperties.swift */,
 				0C8F5E9C2B0D12BA0057C6CF /* CoreDataDemoApp.swift */,
 				0C8F5E9E2B0D12BA0057C6CF /* ContentView.swift */,
 				0C8F5EA02B0D12BC0057C6CF /* Assets.xcassets */,
 				0C8F5EA52B0D12BC0057C6CF /* Persistence.swift */,
+				0C5BB2172B2231760007F88C /* ViewModel.swift */,
 				0C8F5EA72B0D12BC0057C6CF /* CoreDataDemo.xcdatamodeld */,
 				0C8F5EA22B0D12BC0057C6CF /* Preview Content */,
 			);
@@ -143,9 +158,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C5BB2132B222EB10007F88C /* Goal+CoreDataClass.swift in Sources */,
+				0C5BB2182B2231760007F88C /* ViewModel.swift in Sources */,
 				0C8F5EA62B0D12BC0057C6CF /* Persistence.swift in Sources */,
+				0C5BB2152B222EB10007F88C /* Task+CoreDataClass.swift in Sources */,
+				0C5BB2142B222EB10007F88C /* Goal+CoreDataProperties.swift in Sources */,
 				0C8F5EA92B0D12BC0057C6CF /* CoreDataDemo.xcdatamodeld in Sources */,
 				0C8F5E9F2B0D12BA0057C6CF /* ContentView.swift in Sources */,
+				0C5BB2162B222EB10007F88C /* Task+CoreDataProperties.swift in Sources */,
 				0C8F5E9D2B0D12BA0057C6CF /* CoreDataDemoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

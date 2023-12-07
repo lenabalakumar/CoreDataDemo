@@ -13,30 +13,39 @@ struct ContentView: View {
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
+        animation: .easeInOut)
     private var items: FetchedResults<Item>
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
+        NavigationStack {
+            VStack {
+                NavigationLink("To persons list") {
+                    PersonsList()
                 }
-                .onDelete(perform: deleteItems)
+                NavigationLink("To goals list") {
+                    GoalsList()
+                }
+                List {
+                    ForEach(items) { item in
+                        NavigationLink {
+                            Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        } label: {
+                            Text(item.timestamp!, formatter: itemFormatter)
+                        }
+                    }
+                    .onDelete(perform: deleteItems)
+                }
+                .listStyle(.plain)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
+                    }
+                    ToolbarItem {
+                        Button(action: addItem) {
+                            Label("Add Item", systemImage: "plus")
+                        }
+                    }
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
             }
             Text("Select an item")
         }
@@ -45,6 +54,8 @@ struct ContentView: View {
     private func addItem() {
         withAnimation {
             let newItem = Item(context: viewContext)
+            let newPerson = Person(context: viewContext)
+            newPerson.name = "Giptor"
             newItem.timestamp = Date()
 
             do {
@@ -74,10 +85,43 @@ struct ContentView: View {
     }
 }
 
+struct PersonsList: View {
+    
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Person.name, ascending: false)])
+    private var persons: FetchedResults<Person>
+    
+    var body: some View {
+        List {
+            ForEach(persons) { person in
+                Text(person.name ?? "Pifrat")
+            }
+        }
+    }
+}
+
+struct GoalsList: View {
+
+    @StateObject var viewModel: ViewModel = ViewModel()
+    
+    var body: some View {
+        List {
+            ForEach(viewModel.goals) { goal in
+                Text(goal.title ?? "Default goal")
+            }
+        }
+        .toolbar {
+            ToolbarItem {
+                Text(String(viewModel.numberOfGoals))
+            }
+        }
+    }
+}
+
 private let itemFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
+    formatter.dateStyle = .long
+    formatter.timeStyle = .long
     return formatter
 }()
 
